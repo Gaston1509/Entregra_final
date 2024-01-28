@@ -15,7 +15,6 @@ header {
     top: 0;
     z-index: 1;
 }
-
 main {
     max-width: 1000px;
     margin: 0px auto;
@@ -49,7 +48,6 @@ h1{
 }
 
 #productos-container {
-    width: ;
     display: flex;
     justify-content:space-evenly;
     flex-wrap: wrap;
