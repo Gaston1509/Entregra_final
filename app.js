@@ -127,9 +127,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             <button onclick="agregarAlCarrito(${producto.id}, '${producto.nombre}', ${producto.precio}, '${producto.imagen}')">Agregar al Carrito</button>`;
         productosContainer.appendChild(productoDiv);
     });
-
-    
-
     // OBTENER Y MOSTRAR GOLOSINAS DESDE UNSPLASH
     const golosinasUnsplash = await obtenerGolosinasUnsplash();
     mostrarBanner(golosinasUnsplash);
@@ -140,8 +137,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         const carrito = obtenerCarrito();
         if (carrito.length === 0) {
             Swal.fire({
-                icon: "error",
                 title: "¡Compra algo ratón!",
+                imageUrl: "./assets/img/raton.png",
+                imageWidth: 300,
+                imageHeight: 200,
+                imageAlt: "Custom image"
               });
         } else {
             Swal.fire({
