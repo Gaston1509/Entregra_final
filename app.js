@@ -13,27 +13,42 @@ const productos = [
     { id: 11, nombre: 'Desayuno', precio: 3000, imagen: './assets/img/cafe_medialunas.png' },
     { id: 12, nombre: 'Yogurt', precio: 1450, imagen: './assets/img/yogurt.png' },
 ];
-
 // FUNCION AGREGAR AL CARRITO
 function agregarAlCarrito(id, nombre, precio, imagen) {
     const carrito = obtenerCarrito();
     carrito.push({ id, nombre, precio, imagen });
     guardarCarrito(carrito);
     actualizarCarrito();
+    
+    // MOSTRAR MODAL DE AGREGADO
+    mostrarModal('Agregaste un producto', nombre);
 }
-
 // FUNCION QUITAR DEL CARRITO
 function quitarDelCarrito(id) {
     let carrito = obtenerCarrito();
     const index = carrito.findIndex(item => item.id === id);
 
     if (index !== -1) {
+        const nombreProducto = carrito[index].nombre;
         carrito.splice(index, 1);
         guardarCarrito(carrito);
         actualizarCarrito();
+        
+        // MOSTRAR MODAL DE QUITAR
+        mostrarModal('Quitaste un producto', nombreProducto);
     }
 }
-
+// FUNCION PARA MOSTRAR MODAL
+function mostrarModal(titulo, mensaje) {
+    Swal.fire({
+        position: "top-end",
+        icon: 'success',
+        title: titulo,
+        text: mensaje,
+        showConfirmButton: false,
+        timer: 1000,
+    });
+}
 // JSON
 function obtenerCarrito() {
     return JSON.parse(localStorage.getItem('carrito')) || [];
